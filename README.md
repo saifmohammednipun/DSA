@@ -1,5 +1,5 @@
 # Data-Structures-and-Algorithms
 
 ## Sorting
-### Bubble Sort <br>
+Bubble Sort <br>
 https://www.geeksforgeeks.org/bubble-sort/
