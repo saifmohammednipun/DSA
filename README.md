@@ -7,8 +7,6 @@ https://www.geeksforgeeks.org/understanding-time-complexity-simple-examples/
 * Space Complexity <br>
 https://www.geeksforgeeks.org/g-fact-86/
 #
-
-
 ## Sorting
 * Selection Sort <br>
 https://www.geeksforgeeks.org/selection-sort/ 
@@ -22,8 +20,6 @@ https://www.geeksforgeeks.org/insertion-sort/
 * Merge Sort <br>
 https://www.geeksforgeeks.org/merge-sort/
 #
-
-
 ## Searching Algorithms
 ### Sequential Search 
 * Linear Search <br>
