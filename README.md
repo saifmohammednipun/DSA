@@ -13,3 +13,15 @@ https://www.geeksforgeeks.org/insertion-sort/
 * Merge Sort <br>
 https://www.geeksforgeeks.org/merge-sort/
 
+## Searching Algorithms
+### Sequential Search 
+* Linear Search <br>
+https://www.geeksforgeeks.org/linear-search/
+
+### Interval Search
+* Binary Search <br>
+https://www.geeksforgeeks.org/binary-search/
+
+
+
+
