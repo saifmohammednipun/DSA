@@ -9,11 +9,11 @@ https://www.geeksforgeeks.org/g-fact-86/
 
 
 ## Sorting Algorithms
-* Selection Sort <br>
-https://www.geeksforgeeks.org/selection-sort/ 
-
 * Bubble Sort <br>
 https://www.geeksforgeeks.org/bubble-sort/
+
+* Selection Sort <br>
+https://www.geeksforgeeks.org/selection-sort/ 
 
 * Insertion Sort <br>
 https://www.geeksforgeeks.org/insertion-sort/
@@ -21,6 +21,8 @@ https://www.geeksforgeeks.org/insertion-sort/
 * Merge Sort <br>
 https://www.geeksforgeeks.org/merge-sort/
 
+* Quick Sort <br>
+https://www.geeksforgeeks.org/quick-sort/
 
 ## Searching Algorithms
 ### Sequential Search 
