@@ -2,6 +2,7 @@
  ** Keypoints**
  * Comparing adjacent values
  * Larger value will always pushed to the right
+ * Time Complexity: O(N^2)
  */
 
 #include <iostream>
