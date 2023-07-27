@@ -1,3 +1,9 @@
+/*
+ ** Keypoints**
+ * Comparing adjacent values
+ * Larger value will always pushed to the right
+ */
+
 #include <iostream>
 using namespace std;
 #define SIZE 6
@@ -34,7 +40,6 @@ int main()
     {
         cout<< myArray[i] << " ";
     }
-
     
     return 0;
 }
