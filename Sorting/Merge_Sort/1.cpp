@@ -2,6 +2,7 @@
 using namespace std;
 #define SIZE 8
 
+
 int arr[SIZE];
 
 void merge(int l, int r, int mid)
@@ -20,7 +21,7 @@ void merge(int l, int r, int mid)
     for(int i=mid+1,j=0; i<=r; i++, j++)
     {
         r[j] = arr[i];
-        
+
     }
 
     l[left_size] = INT_MAX;
