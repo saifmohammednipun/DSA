@@ -20,12 +20,11 @@ int main()
     cout<< *(ptr1 + 1*3 +2) << endl;
 
     //Using a concept of Array Pointer Variable
-    cout<< (*(*(ptr1 + 1) + 2)) <<endl;
+    cout<< *(*(ptr1 + 1) + 2) <<endl;
 
     int (*p)[3][3] = &A;
     int (*p1)[3] = &B;
     cout<< p1 <<endl;
-
-    
+ 
     return 0;
 }
