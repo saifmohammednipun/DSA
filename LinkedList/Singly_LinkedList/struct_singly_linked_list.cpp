@@ -51,7 +51,90 @@ void popFront()
     else cout << "List is empty. Nothing to delete" << endl;
 }
 
-void print()
+void popBack()
+{
+    struct Node* cur = head;
+    
+    while(cur->next->next != NULL)
+    {
+        cur = cur->next;
+    }
+
+    struct Node* temp = cur->next;
+    cur->next = NULL;
+    
+    delete temp;
+}
+
+//returning boolean value
+bool find(int v)
+{
+    struct Node* cur = head;
+
+    while(cur != NULL)
+    {
+        if(cur->key == v)
+        {
+            return true;
+        }
+      cur = cur->next;
+    }
+
+    return false;
+}
+
+
+void addBefore(int key, int v)
+{
+    struct Node* cur = head;
+    struct Node* newNode = createNode(key);
+
+    // corner cases
+    //if (head == NULL) {
+    //     // If the list is empty, simply make the newNode the new head
+    //     head = newNode;
+    //     return;
+    // }
+    
+    // if (head->key == v) {
+    //     // If the key 'v' is in the head node, update head and link newNode
+    //     newNode->next = head;
+    //     head = newNode;
+    //     return;
+    // } 
+
+    while (cur->next != NULL)
+    {
+        if (cur->next->key == v)
+        {
+            newNode->next = cur->next;
+            cur->next = newNode;
+            return; // Inserted the new node, so exit the loop
+        }
+        cur = cur->next;
+    }
+
+}
+
+
+void addAfter(int key, int v)
+{
+    struct Node* cur = head;
+    struct Node* newNode = createNode(key);
+
+   while(cur != NULL)
+    {
+        if(cur->key == v)
+        {
+            newNode->next = cur->next;
+            cur->next = newNode;
+            return;
+        }
+      cur = cur->next;
+    }
+}
+
+void printLinkedList()
 {
     struct Node* cur = head;
 
@@ -72,17 +155,27 @@ int main()
     head->next = a;
     a->next = b;
     b->next = c;
-    print();
+    printLinkedList();
 
     pushFornt(5); //Insert Node before Head
+    printLinkedList();
+
     pushBack(45); //Insert Node after Tail
-    
-    print();
+    printLinkedList();
 
     popFront(); // Remove Head Node
+    printLinkedList();
 
-    print();
+    popBack(); // Remove Tail Node 
+    printLinkedList();
 
-    return 0;
+   bool f = find(0); //Finding an element in the linkedlist
+   cout << f <<endl; 
+
+   addBefore(60,30);
+   printLinkedList();
+
+//    addAfter(60,30);
+//    printLinkedList();
 
 }
