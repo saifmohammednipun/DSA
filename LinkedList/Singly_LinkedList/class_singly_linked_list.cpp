@@ -185,5 +185,5 @@ int main()
 
    addAfter(60,30);
    printLinkedList();
-    
+
 }
