@@ -6,13 +6,13 @@ using namespace std;
 #define SIZE3 300000
 #define SIZE4 400000
 
-void merge(int* arr, int p, int q, int r) {
+void merge(int* dataSet, int p, int q, int r) {
     int n1 = q - p + 1;
     int n2 = r - q;
     int L[n1], M[n2];
 
-    for (int i = 0; i < n1; i++)  L[i] = arr[p + i];
-    for (int j = 0; j < n2; j++)  M[j] = arr[q + 1 + j];
+    for (int i = 0; i < n1; i++)  L[i] = dataSet[p + i];
+    for (int j = 0; j < n2; j++)  M[j] = dataSet[q + 1 + j];
 
     int i, j, k;
     i = 0;
@@ -21,37 +21,35 @@ void merge(int* arr, int p, int q, int r) {
 
     while (i < n1 && j < n2) {
         if (L[i] <= M[j]) {
-            arr[k] = L[i];
+            dataSet[k] = L[i];
             i++;
         } else {
-            arr[k] = M[j];
+            dataSet[k] = M[j];
             j++;
         }
         k++;
     }
 
     while (i < n1) {
-        arr[k] = L[i];
+        dataSet[k] = L[i];
         i++;
         k++;
     }
 
     while (j < n2) {
-        arr[k] = M[j];
+        dataSet[k] = M[j];
         j++;
         k++;
     }
 }
-
-void mergeSort(int arr[], int l, int r) {
+void mergeSort(int dataSet[], int l, int r) {
     if (l < r) {
         int m = l + (r - l) / 2;
-        mergeSort(arr, l, m);
-        mergeSort(arr, m + 1, r);
-        merge(arr, l, m, r);
+        mergeSort(dataSet, l, m);
+        mergeSort(dataSet, m + 1, r);
+        merge(dataSet, l, m, r);
     }
 }
-
 void insertionSort(int* dataSet, int size) {
     for (int i = 1; i < size; i++) {
         int current = dataSet[i];
@@ -64,18 +62,19 @@ void insertionSort(int* dataSet, int size) {
         dataSet[j + 1] = current;
     }
 }
-
 void selectionSort(int* dataSet, int size) {
-    for (int i = 0; i < size - 1; i++) {
+     for (int i = 0; i < size - 1; i++) {
+        int minIndex = i;
         for (int j = i + 1; j < size; j++) {
-            if (dataSet[i] > dataSet[j]) swap(dataSet[i], dataSet[j]);
+            if (dataSet[j] < dataSet[minIndex]) {
+                minIndex = j;
+            }
         }
+        swap(dataSet[i], dataSet[minIndex]);
     }
 }
-
 void bubbleSort(int* dataSet, int size) {
     int temp = 0;
-
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size - i - 1; j++) {
             if (dataSet[j] > dataSet[j + 1]) {
@@ -86,7 +85,6 @@ void bubbleSort(int* dataSet, int size) {
         }
     }
 }
-
 void printDataSet(int* dataSet, int size) {
     for (int i = 0; i < size; i++) {
         cout << dataSet[i] << " ";
@@ -95,15 +93,15 @@ void printDataSet(int* dataSet, int size) {
 }
 
 void generateRandomValues(int* dataSet, int size) {
-    int lowerBound = 0, upperBound = 100000;
-    for (int i = 0; i < size; i++) {
-        dataSet[i] = (rand() % (upperBound - lowerBound + 1)) + lowerBound;
-    }
+    for (int i = 0; i < size; i++) 
+        dataSet[i] = rand();
+
 }
 
 bool isSorted(int* dataSet, int size) {
     for (int i = 1; i < size; i++) {
-        if (dataSet[i] < dataSet[i - 1]) return false;
+        if (dataSet[i] < dataSet[i - 1]) 
+                return false;
     }
     return true;
 }
@@ -131,12 +129,17 @@ void measureSortTime(int* dataSet, int* dataSetCopy, int size, string sortName) 
 
 int main() {
 
-    int choice;
+    srand(time(NULL)); // Seed the random number generator once at the beginning
 
+    int choice;
+    while(true)
+    {
+    cout << "Menu: "<< endl;
     cout << "1. Data Set-1" << endl;
     cout << "2. Data Set-2" << endl;
     cout << "3. Data Set-3" << endl;
     cout << "4. Data Set-4" << endl;
+    cout << "5. Exit Program" << endl;
 
     cout << "Enter Your Choice: ";
     cin >> choice;
@@ -145,10 +148,8 @@ int main() {
     int* dataSet;
     int* dataSetCopy;
     int size;
-
-    srand(time(NULL)); // Seed the random number generator once at the beginning
-
     switch (choice) {
+    
     case 1:
         dataSet = new int[SIZE1];
         dataSetCopy = new int[SIZE1];
@@ -165,8 +166,8 @@ int main() {
         delete[] dataSet;
         delete[] dataSetCopy;
 
-        break;
 
+        break;
     case 2:
         dataSet = new int[SIZE2];
         dataSetCopy = new int[SIZE2];
@@ -183,7 +184,7 @@ int main() {
         delete[] dataSet;
         delete[] dataSetCopy;
 
-        break;
+     break;
 
     case 3:
         dataSet = new int[SIZE3];
@@ -219,10 +220,13 @@ int main() {
         delete[] dataSet;
         delete[] dataSetCopy;
 
-        break;
 
+        break; 
+    case 5: 
+        return 0;
     default:
         cout << "Invalid Choice" << endl;
+        }
     }
 
     return 0;
