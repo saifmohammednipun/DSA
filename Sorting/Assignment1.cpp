@@ -11,70 +11,66 @@ int *dataSet2 = new int[SIZE2];
 int *dataSet3 = new int[SIZE3];
 int *dataSet4 = new int[SIZE4];
 
-void merge(int array[], int const left, int const mid, int const right)
-{
-    int const subArrayOne = mid - left + 1;
-    int const subArrayTwo = right - mid;
- 
-   
-    auto *leftArray = new int[subArrayOne],
-         *rightArray = new int[subArrayTwo];
- 
-    
-    for (auto i = 0; i < subArrayOne; i++)
-        leftArray[i] = array[left + i];
-    for (auto j = 0; j < subArrayTwo; j++)
-        rightArray[j] = array[mid + 1 + j];
- 
-    auto indexOfSubArrayOne = 0, indexOfSubArrayTwo = 0;
-    int indexOfMergedArray = left;
- 
-    
-    while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) 
-    {
-        if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) {
-            array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
-            indexOfSubArrayOne++;
-        }
-        else
-        {
-            array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
-            indexOfSubArrayTwo++;
-        }
-        indexOfMergedArray++;
-    }
- 
-    
-    while (indexOfSubArrayOne < subArrayOne)
-    {
-        array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
-        indexOfSubArrayOne++;
-        indexOfMergedArray++;
-    }
- 
-    
-    while (indexOfSubArrayTwo < subArrayTwo)
-    {
-        array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
-        indexOfSubArrayTwo++;
-        indexOfMergedArray++;
-    }
-    delete[] leftArray;
-    delete[] rightArray;
-}
- 
-void mergeSort(int array[], int const begin, int const end)
-{
-    if (begin >= end)
-        return;
- 
-    int mid = begin + (end - begin) / 2;
-    mergeSort(array, begin, mid);
-    mergeSort(array, mid + 1, end);
-    merge(array, begin, mid, end);
-}
- 
 
+
+void merge(int arr[], int p, int q, int r)
+ {
+  int n1 = q - p + 1;
+  int n2 = r - q;
+
+  int L[n1], M[n2];
+
+  for (int i = 0; i < n1; i++)
+        L[i] = arr[p + i];
+  for (int j = 0; j < n2; j++)
+        M[j] = arr[q + 1 + j];
+
+  int i, j, k;
+  i = 0;
+  j = 0;
+  k = p;
+
+  while (i < n1 && j < n2)
+  {
+    if (L[i] <= M[j])
+    {
+      arr[k] = L[i];
+      i++;
+    } 
+    else 
+    {
+      arr[k] = M[j];
+      j++;
+    }
+    k++;
+  }
+
+  while (i < n1)
+  {
+    arr[k] = L[i];
+    i++;
+    k++;
+  }
+
+  while (j < n2)
+  {
+    arr[k] = M[j];
+    j++;
+    k++;
+  }
+}
+
+
+void mergeSort(int arr[], int l, int r) {
+  
+    if (l < r) 
+    {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
 
 void insertionSort(int* dataSet)
 {
@@ -93,6 +89,7 @@ void insertionSort(int* dataSet)
     }
 
 }
+
 
 void selectionSort(int* dataSet)
 {
@@ -156,70 +153,68 @@ int main()
     cout<<  "3. Data Set-3" <<endl;
     cout<<  "4. Data Set-4"  <<endl;
 
-    
-     cout<< "Enter Your Choice";
-     cin>>choice;
-    
+     cout << "Enter Your Choice: ";
+     cin >> choice;
+     cout << endl;
     
     switch(choice)
     {
-        case 1: 
+        case 1:   
+                
                 generateRandomValues(dataSet1, SIZE1);
 
-            
                 cout<< "Data Set-1 Sorting Execution Times " <<endl;
                 srand(time(NULL)); 
 
                 startTime = time(NULL);
-                bubbleSort(dataSet1);
+                    bubbleSort(dataSet1);
                 endTime = time(NULL);
                 cout << "Bubble Sort Execution Time: " << endTime-startTime <<"s"<< endl;
-   
-                 
-                startTime = time(NULL);
-                selectionSort(dataSet1);
-                endTime = time(NULL);
-                cout << "Selection Sort Execution Time: " << endTime-startTime <<"s"<< endl;
-   
                
                 startTime = time(NULL);
-                insertionSort(dataSet1);
+                    selectionSort(dataSet1);
+                endTime = time(NULL);
+                cout << "Selection Sort Execution Time: " << endTime-startTime <<"s"<< endl;
+               
+                startTime = time(NULL);
+                    insertionSort(dataSet1);
                 endTime = time(NULL);
                 cout << "Insertion Sort Execution Time: " << endTime-startTime <<"s"<< endl;
-   
+              
                 startTime = time(NULL);
-                mergeSort(dataSet1,0,SIZE1);
+                    mergeSort(dataSet1,0,SIZE1-1);
                 endTime = time(NULL);
                 cout << "Merge Sort Execution Time: " << endTime-startTime <<"s"<< endl;
-   
-            break;
+                
+                break;
 
         case 2: 
                 generateRandomValues(dataSet2, SIZE2);
 
                 cout<< "Data Set-2 Sorting Execution Times " <<endl;
+
                 srand(time(NULL)); 
 
                 startTime = time(NULL);
-                    bubbleSort(dataSet2);
+                bubbleSort(dataSet2);
                 endTime = time(NULL);
                 cout << "Bubble Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
                  
                 startTime = time(NULL);
-                    selectionSort(dataSet2);
+                selectionSort(dataSet2);
                 endTime = time(NULL);
                 cout << "Selection Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
                
                 startTime = time(NULL);
-                    insertionSort(dataSet2);
+                insertionSort(dataSet2);
                 endTime = time(NULL);
                 cout << "Insertion Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
      
                 startTime = time(NULL);
-                    mergeSort(dataSet2,0,SIZE2);
+                mergeSort(dataSet2,0,SIZE2-1);
                 endTime = time(NULL);
                 cout << "Merge Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
@@ -233,25 +228,25 @@ int main()
                 srand(time(NULL)); 
 
                 startTime = time(NULL);
-                    bubbleSort(dataSet3);
+                bubbleSort(dataSet3);
                 endTime = time(NULL);
                 cout << "Bubble Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
                  
                 startTime = time(NULL);
-                    selectionSort(dataSet3);
+                selectionSort(dataSet3);
                 endTime = time(NULL);
                 cout << "Selection Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
                
                 startTime = time(NULL);
-                    insertionSort(dataSet3);
+                insertionSort(dataSet3);
                 endTime = time(NULL);
                 cout << "Insertion Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
      
                 startTime = time(NULL);
-                    mergeSort(dataSet3,0,SIZE3);
+                mergeSort(dataSet3,0,SIZE3-1);
                 endTime = time(NULL);
                 cout << "Merge Sort Execution Time: " << endTime-startTime <<"s"<< endl;
 
@@ -264,25 +259,25 @@ int main()
                 srand(time(NULL)); 
 
                 startTime = time(NULL);
-                    bubbleSort(dataSet4);
+                bubbleSort(dataSet4);
                 endTime = time(NULL);
                 cout << "Bubble Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
                  
                 startTime = time(NULL);
-                    selectionSort(dataSet4);
+                selectionSort(dataSet4);
                 endTime = time(NULL);
                 cout << "Selection Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
                
                 startTime = time(NULL);
-                    insertionSort(dataSet4);
+                insertionSort(dataSet4);
                 endTime = time(NULL);
                 cout << "Insertion Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
      
                 startTime = time(NULL);
-                    mergeSort(dataSet4,0,SIZE4);
+                mergeSort(dataSet4,0,SIZE4-1);
                 endTime = time(NULL);
                 cout << "Merge Sort Execution Time: " << endTime-startTime <<"s"<< endl;
    
