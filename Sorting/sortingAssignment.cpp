@@ -6,50 +6,60 @@ using namespace std;
 #define SIZE3 300000
 #define SIZE4 400000
 
-void merge(int* dataSet, int p, int q, int r) {
-    int n1 = q - p + 1;
-    int n2 = r - q;
-    int L[n1], M[n2];
-
-    for (int i = 0; i < n1; i++)  L[i] = dataSet[p + i];
-    for (int j = 0; j < n2; j++)  M[j] = dataSet[q + 1 + j];
-
+void merge(int *dataSet, int low, int mid, int high) {
     int i, j, k;
-    i = 0;
-    j = 0;
-    k = p;
+    int lengthLeft = mid - low + 1;
+    int lengthRight = high - mid;
 
-    while (i < n1 && j < n2) {
-        if (L[i] <= M[j]) {
-            dataSet[k] = L[i];
+    int arrLeft[lengthLeft], arrRight[lengthRight];
+
+    for (int i= 0; i < lengthLeft; i++) {
+        arrLeft[i] = dataSet[low + i];
+    }
+    for (int i = 0; i < lengthRight; i++) {
+        arrRight[i] = dataSet[mid + 1 + i];
+    }
+   
+    i = 0; 
+    j = 0; 
+    k = low; 
+
+    while (i < lengthLeft && j < lengthRight) {
+        if (arrLeft[i] <= arrRight[j]) {
+            dataSet[k] = arrLeft[i];
             i++;
         } else {
-            dataSet[k] = M[j];
+            dataSet[k] = arrRight[j];
             j++;
         }
         k++;
     }
 
-    while (i < n1) {
-        dataSet[k] = L[i];
-        i++;
+    while (i < lengthLeft) {
+        dataSet[k] = arrLeft[i];
         k++;
+        i++;
     }
 
-    while (j < n2) {
-        dataSet[k] = M[j];
-        j++;
+   
+    while (j < lengthRight) {
+        dataSet[k] = arrRight[j];
         k++;
+        j++;
     }
 }
-void mergeSort(int dataSet[], int l, int r) {
-    if (l < r) {
-        int m = l + (r - l) / 2;
-        mergeSort(dataSet, l, m);
-        mergeSort(dataSet, m + 1, r);
-        merge(dataSet, l, m, r);
+
+// Merge Sort
+void mergeSort(int *dataSet, int low, int high) {
+    int mid;
+    if (low < high){   
+        mid = (low + high) / 2;
+        mergeSort(dataSet, mid + 1, high);
+        merge(dataSet, low, mid, high);
     }
 }
+
+//Insertion Sort
 void insertionSort(int* dataSet, int size) {
     for (int i = 1; i < size; i++) {
         int current = dataSet[i];
@@ -62,6 +72,8 @@ void insertionSort(int* dataSet, int size) {
         dataSet[j + 1] = current;
     }
 }
+
+//Selection Sort
 void selectionSort(int* dataSet, int size) {
      for (int i = 0; i < size - 1; i++) {
         int minIndex = i;
@@ -73,6 +85,8 @@ void selectionSort(int* dataSet, int size) {
         swap(dataSet[i], dataSet[minIndex]);
     }
 }
+
+//Bubble Sort
 void bubbleSort(int* dataSet, int size) {
     int temp = 0;
     for (int i = 0; i < size; i++) {
@@ -108,7 +122,7 @@ bool isSorted(int* dataSet, int size) {
 
 void measureSortTime(int* dataSet, int* dataSetCopy, int size, string sortName) {
     for (int i = 0; i < size; i++) {
-        dataSetCopy[i] = dataSet[i]; // Create a copy to pass to sorting functions
+        dataSetCopy[i] = dataSet[i];
     }
 
     time_t startTime, endTime;
@@ -128,8 +142,7 @@ void measureSortTime(int* dataSet, int* dataSetCopy, int size, string sortName) 
 }
 
 int main() {
-
-    srand(time(NULL)); // Seed the random number generator once at the beginning
+    srand(time(NULL)); 
 
     int choice;
     while(true)
@@ -157,7 +170,6 @@ int main() {
         generateRandomValues(dataSet, size);
 
         cout << "Data Set-1 Sorting Execution Times " << endl;
-
         measureSortTime(dataSet, dataSetCopy, size, "Bubble");
         measureSortTime(dataSet, dataSetCopy, size, "Selection");
         measureSortTime(dataSet, dataSetCopy, size, "Insertion");
@@ -165,17 +177,16 @@ int main() {
 
         delete[] dataSet;
         delete[] dataSetCopy;
-
-
         break;
+
     case 2:
+
         dataSet = new int[SIZE2];
         dataSetCopy = new int[SIZE2];
         size = SIZE2;
         generateRandomValues(dataSet, size);
 
         cout << "Data Set-2 Sorting Execution Times " << endl;
-
         measureSortTime(dataSet, dataSetCopy, size, "Bubble");
         measureSortTime(dataSet, dataSetCopy, size, "Selection");
         measureSortTime(dataSet, dataSetCopy, size, "Insertion");
@@ -183,8 +194,7 @@ int main() {
 
         delete[] dataSet;
         delete[] dataSetCopy;
-
-     break;
+        break;
 
     case 3:
         dataSet = new int[SIZE3];
@@ -193,7 +203,6 @@ int main() {
         generateRandomValues(dataSet, size);
 
         cout << "Data Set-3 Sorting Execution Times " << endl;
-
         measureSortTime(dataSet, dataSetCopy, size, "Bubble");
         measureSortTime(dataSet, dataSetCopy, size, "Selection");
         measureSortTime(dataSet, dataSetCopy, size, "Insertion");
@@ -201,7 +210,6 @@ int main() {
 
         delete[] dataSet;
         delete[] dataSetCopy;
-
         break;
 
     case 4:
@@ -211,7 +219,6 @@ int main() {
         generateRandomValues(dataSet, size);
 
         cout << "Data Set-4 Sorting Execution Times " << endl;
-
         measureSortTime(dataSet, dataSetCopy, size, "Bubble");
         measureSortTime(dataSet, dataSetCopy, size, "Selection");
         measureSortTime(dataSet, dataSetCopy, size, "Insertion");
@@ -219,11 +226,12 @@ int main() {
 
         delete[] dataSet;
         delete[] dataSetCopy;
-
-
         break; 
+
     case 5: 
+        cout<< "Program Exited.";
         return 0;
+
     default:
         cout << "Invalid Choice" << endl;
         }
