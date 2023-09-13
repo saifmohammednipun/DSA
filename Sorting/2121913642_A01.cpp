@@ -99,6 +99,8 @@ void bubbleSort(int* dataSet, int size) {
         }
     }
 }
+
+//Print Array
 void printDataSet(int* dataSet, int size) {
     for (int i = 0; i < size; i++) {
         cout << dataSet[i] << " ";
@@ -106,12 +108,14 @@ void printDataSet(int* dataSet, int size) {
     cout << endl;
 }
 
+//Generate Array
 void generateRandomValues(int* dataSet, int size) {
     for (int i = 0; i < size; i++) 
         dataSet[i] = rand();
 
 }
 
+//Check sorted array
 bool isSorted(int* dataSet, int size) {
     for (int i = 1; i < size; i++) {
         if (dataSet[i] < dataSet[i - 1]) 
@@ -120,6 +124,7 @@ bool isSorted(int* dataSet, int size) {
     return true;
 }
 
+//Check execusion timing
 void measureSortTime(int* dataSet, int* dataSetCopy, int size, string sortName) {
     for (int i = 0; i < size; i++) {
         dataSetCopy[i] = dataSet[i];
