@@ -3,10 +3,10 @@ using namespace std;
 
 struct Point
 {
-    int x;
-    int y;
+    // int x;
+    // int y;
+    int x,y;
 };
-
 
 int main()
 {

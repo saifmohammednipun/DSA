@@ -105,10 +105,7 @@ Node* findEven(Node* head) {
     return evenHead;
 }
 
-
-
-
-void printLinlkedList()
+void printLinlkedList(Node* head)
 {
     Node* cur = head;
 
@@ -120,6 +117,21 @@ void printLinlkedList()
 
     cout<<endl;
 }
+
+
+
+// void printLinlkedList()
+// {
+//     Node* cur = head;
+
+//     while(cur != NULL)
+//     {
+//         cout<< cur->key << " ";
+//         cur= cur->next;
+//     }
+
+//     cout<<endl;
+// }
 
 int main()
 {
@@ -135,17 +147,17 @@ int main()
     b->next = c;
     c->next = tail;
 
-    printLinlkedList();
+    printLinlkedList(head);
     pushFornt(6);
-    printLinlkedList();
+    printLinlkedList(head);
     // pushBack(head, 6);
     // printLinlkedList();
 
     pushBack(tail, 6);
-    printLinlkedList();
+    printLinlkedList(head);
 
     popFront();
-    printLinlkedList();
+    printLinlkedList(head);
 
     Node * cur = findEven(head);
     while(cur != NULL)
@@ -163,23 +175,3 @@ int main()
 
 
 
-
-#include <iostream> 
-using namespace std;
-int main ()
-{
-
-int num [5];
-int* p;
-p = num;
-*p = 10;
-* (p++) = 20.;
-*p =30;
-p = &num [2];
-* (p++) = ++ (* (p-1) ) ;
-* (p++) = * (p-2) + * (p-3) ;
-*р = 50;
-for (int i = 0; i < 5; i++)
-cout << num[i] << ",";
-return 0;
-}
