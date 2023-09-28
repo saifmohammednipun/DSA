@@ -152,7 +152,7 @@ int main()
     printLinlkedList(head);
     // pushBack(head, 6);
     // printLinlkedList();
-
+    
     pushBack(tail, 6);
     printLinlkedList(head);
 
