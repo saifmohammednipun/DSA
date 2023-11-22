@@ -1,21 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
   
-void towerOfHanoi(int n, int from_rod, int to_rod, int aux_rod)
+void Tower(int n, char source, char destination, char auxilary)
 {
-    if (n == 0) 
+    // base case
+    if (n == 1)
+    {
+        cout << "Move 1 from " << source << " to " << destination << endl;
         return;
-    
-    towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
-    cout << "Move disk " << n << " from rod " << from_rod << " to rod " << to_rod << endl;
-    
-    towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
+    }
+
+    // recursive case
+    else 
+    {
+        // move n-1 disks from source to auxilary
+        Tower(n - 1, source, destination, auxilary); 
+        cout << "Move " << n << " from " << source << " to " << auxilary << endl;
+
+        // move n-1 disks from auxilary to destination
+        Tower(n - 1, auxilary, source, destination);
+    }
 }
-  
 
 int main()
 {
-    int N = 3;
-    towerOfHanoi(N, 1, 3, 2);
-    return 0;
+    int n = 3;
+    Tower(n, 'A', 'C', 'B');
 }
