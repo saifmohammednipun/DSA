@@ -19,6 +19,7 @@ void Tower(int n, char source, char destination, char auxilary)
 
         // move n-1 disks from auxilary to destination
         Tower(n - 1, auxilary, source, destination);
+        cout << "Move " << n << " from " << auxilary << " to " << destination << endl;
     }
 }
 
