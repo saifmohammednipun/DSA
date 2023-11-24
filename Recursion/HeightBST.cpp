@@ -1,4 +1,3 @@
-// C++ program to find height of tree
 #include <bits/stdc++.h>
 using namespace std;
 
