@@ -17,6 +17,7 @@ Node* newNode(int key)
     node->rightchild = NULL;
     return node;
 }
+
 int search (int arr[], int start, int end, int key)
 {
     int i;
